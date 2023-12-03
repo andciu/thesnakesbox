@@ -87,6 +87,7 @@ function loop() {
         snake.dy = 0;
         apple.x = getRandomInt(0, 25) * grid;
         apple.y = getRandomInt(0, 25) * grid;
+        document.getElementById('last_score').innerHTML = 'Ultimo punteggio: ' + score;
         score = 0;
         document.getElementById('score').innerHTML = 'Score: ' + score;
         gameRunning = false;
@@ -133,4 +134,3 @@ difficulty.addEventListener('change', function(e) {
   speed = 15 - e.target.value;
   maxScore = parseInt(e.target.value);
 });
-
