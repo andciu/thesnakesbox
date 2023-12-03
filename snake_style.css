@@ -1,0 +1,14 @@
+body {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+#game {
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+#box-titel {
+    font-size:0.5em;
+}
