@@ -10,13 +10,15 @@ This is a simple, quickly written game, made to be started from pc quickly and t
 
 Play with it and have fun
 
-## Authors and acknowledgment
+## Authors
 
 Andrea Ciucci
+
+## Acknowledgment
 
 Thanksgiving to boredom
 
 ## License
 
-[GNU General Public License v2 or later] (http://www.gnu.org/licenses/gpl-2.0.html)
+GNU General Public License v2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
 
