@@ -1,12 +1,14 @@
 # thesnakesbox
 
-## Version 1.0.0
+## Version 2.0.0
 
 Boredom made me do this.
 One afternoon remembering my of Nokia 3310 and its amazing Snake, I said to myself, do it!
 This is how I kill boredom!
-
 This is a simple, quickly written game, made to be started from pc quickly and to pass a few minutes of nostalgia, that's why the choice of Javascript, with its small HTML page and style sheet.
+
+##Last Update
+Added special high-scoring fruits introduced.
 
 ## Usage
 
