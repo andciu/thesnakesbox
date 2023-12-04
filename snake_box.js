@@ -9,6 +9,7 @@ var speed = 15;
 var maxScore = 9;
 var gameRunning = false;
 var animationId = null;
+var redAppleCount = 0;
 
 var snake = {
   x: 160,
@@ -22,6 +23,14 @@ var snake = {
 var apple = {
   x: 320,
   y: 320
+};
+
+var specialApple = {
+  x: 320,
+  y: 320,
+  visible: false,
+  appearanceTime: null,
+  scoreValue: 25
 };
 
 function getRandomInt(min, max) {
@@ -63,11 +72,25 @@ function loop() {
   context.fillStyle = 'red';
   context.fillRect(apple.x, apple.y, grid-1, grid-1);
 
+  if (specialApple.visible) {
+    context.fillStyle = 'yellow';
+    context.fillRect(specialApple.x, specialApple.y, grid-1, grid-1);
+  }
+
   context.fillStyle = 'green';
   snake.cells.forEach(function(cell, index) {
     context.fillRect(cell.x, cell.y, grid-1, grid-1);  
     if (cell.x === apple.x && cell.y === apple.y) {
       snake.maxCells++;
+      redAppleCount++;
+      if (redAppleCount >= 7) {
+        specialApple.visible = true;
+        specialApple.x = getRandomInt(0, 25) * grid;
+        specialApple.y = getRandomInt(0, 25) * grid;
+        specialApple.appearanceTime = Date.now();
+        specialApple.scoreValue = 25;
+        redAppleCount = 0;
+      }
       var timeTaken = (Date.now() - appleEatenTime) / 1000;
       var points = timeTaken <= 5 ? maxScore : timeTaken > 15 ? 1 : Math.round((maxScore + 1) - (timeTaken - 5));
       score += points;
@@ -75,6 +98,15 @@ function loop() {
       apple.x = getRandomInt(0, 25) * grid;
       apple.y = getRandomInt(0, 25) * grid;
       appleEatenTime = Date.now();
+    }
+
+    if (specialApple.visible && cell.x === specialApple.x && cell.y === specialApple.y) {
+      specialApple.visible = false;
+      var timeTaken = (Date.now() - specialApple.appearanceTime) / 1000;
+      var points = timeTaken <= 3 ? 25 : timeTaken > 10 ? 15 : Math.round((25 + 1) - (timeTaken - 3));
+      score += points;
+      snake.maxCells += 2;
+      document.getElementById('score').innerHTML = 'Score: ' + score;
     }
 
     for (var i = index + 1; i < snake.cells.length; i++) {
@@ -97,6 +129,16 @@ function loop() {
       }
     }
   });
+
+  if (specialApple.visible) {
+    var elapsedSeconds = (Date.now() - specialApple.appearanceTime) / 1000;
+    if (elapsedSeconds >= 3) {
+      specialApple.scoreValue = Math.max(15, 25 - (elapsedSeconds - 3));
+    }
+    if (elapsedSeconds >= 10) {
+      specialApple.visible = false;
+    }
+  }
 }
 
 document.getElementById('start').addEventListener('click', function() {
@@ -134,3 +176,4 @@ difficulty.addEventListener('change', function(e) {
   speed = 15 - e.target.value;
   maxScore = parseInt(e.target.value);
 });
+
