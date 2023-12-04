@@ -1,5 +1,7 @@
 # thesnakesbox
 
+Go to www.thesnakesbox.com to spend a few minutes relaxing.
+
 ## Version 2.0.0
 
 Boredom made me do this.
