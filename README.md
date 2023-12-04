@@ -1,5 +1,7 @@
 # thesnakesbox
 
+## Version 1.0.0
+
 Boredom made me do this.
 One afternoon remembering my of Nokia 3310 and its amazing Snake, I said to myself, do it!
 This is how I kill boredom!
